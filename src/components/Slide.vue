@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 onMounted(() => {
-    
+
     // console.log("Slide mounted");
     // const slides = document.querySelectorAll(".slide *");
     // console.log(slides);
@@ -22,18 +22,14 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .slide {
     font-size: 20rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: v-bind(backgroundColor);
     /* opacity: 0;
     transition: opacity .1s ease-in-out; */
 }
-
-/* .slide[active] {
-    opacity: 1;
-} */
 </style>

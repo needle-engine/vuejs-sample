@@ -12,8 +12,7 @@
   "dependencies": {
 	  "@needle-tools/engine": "^3.23.1",
 	  "three": "npm:@needle-tools/three@^0.154.3",
-	  "vue": "^3.2.47",
-	  "@needle-tools/samples-scripts": "file:./../../Runtime/_Shared/SampleScripts~"
+	  "vue": "^3.2.47"
 	},
   "devDependencies": {
 	  "@needle-tools/needle-component-compiler": "^1.9.3",

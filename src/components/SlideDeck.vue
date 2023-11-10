@@ -21,7 +21,7 @@ ContextRegistry.registerCallback(ContextEvent.ContextCreated, evt => {
 onMounted(() => {
     console.log("Slidedeck mounted");
     const root = document.querySelector(".slidedeck") as HTMLElement;
-    const content = root.querySelectorAll("*");
+    const content = root.querySelectorAll(".slide");
     for (let i = 0; i < content.length; i++) {
         const slideContent = content[i];
         if (slideContent instanceof HTMLElement) {

@@ -8,7 +8,7 @@
     }
   ],
   "settings": {
-    "window.title": "Needle Vue Template - ${rootName}${separator}${activeEditorShort}",
+    "window.title": "needle-engine-vuejs-sample",
     "compile-hero.disable-compile-files-on-did-save-code": true,
     "files.exclude": {
       "package-lock.json": true,
