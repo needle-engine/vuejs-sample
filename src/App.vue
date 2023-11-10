@@ -57,7 +57,6 @@ needle-engine {
     padding: .5rem;
     box-shadow: 0 0 30px rgba(0, 0, 0, .2);
     pointer-events: all;
-    ;
 }
 
 .subtitle a {
@@ -71,5 +70,14 @@ needle-engine {
 
 a:hover {
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .subtitle {
+        position: absolute;
+        font-size: 2rem;
+        max-width: 80%;
+        bottom: 15%;
+    }
 }
 </style>

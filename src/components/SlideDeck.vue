@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Context, GameObject } from '@needle-tools/engine';
+import { Context, GameObject, NeedleEngine } from '@needle-tools/engine';
 import { ContextEvent, ContextRegistry } from '@needle-tools/engine/src/engine/engine_context_registry';
 import { getParam, setParamWithoutReload } from '@needle-tools/engine/src/engine/engine_utils';
 import { onMounted } from 'vue';
@@ -8,10 +8,11 @@ const slides: HTMLElement[] = [];
 let activeSlideIndex = -1;
 
 let context: Context | null = null;
-ContextRegistry.registerCallback(ContextEvent.ContextCreated, evt => {
+NeedleEngine.registerCallback(ContextEvent.ContextCreationStart, evt => {
     context = evt.context as Context;
 
     context.connection.beginListen("slide-changed", newSlide => {
+        console.log(newSlide);
         if (typeof newSlide === "number" && newSlide !== activeSlideIndex) {
             updateActiveSlide(newSlide);
         }
@@ -23,16 +24,22 @@ onMounted(() => {
     const root = document.querySelector(".slidedeck") as HTMLElement;
     const content = root.querySelectorAll(".slide");
     for (let i = 0; i < content.length; i++) {
-        const slideContent = content[i];
-        if (slideContent instanceof HTMLElement) {
-            if (slideContent.classList.contains("slide")) {
-                slides.push(slideContent);
+        const slide = content[i];
+        slide.addEventListener("next-slide", () => {
+            updateActiveSlide(activeSlideIndex + 1, true);
+        });
+        slide.addEventListener("prev-slide", () => {
+            updateActiveSlide(activeSlideIndex - 1, true);
+        });
+        if (slide instanceof HTMLElement) {
+            if (slide.classList.contains("slide")) {
+                slides.push(slide);
                 continue;
             }
             const slideElement = document.createElement("div");
             slides.push(slideElement);
             slideElement.classList.add("slide");
-            slideElement.appendChild(slideContent);
+            slideElement.appendChild(slide);
             root.appendChild(slideElement);
         }
     }
@@ -46,18 +53,11 @@ onMounted(() => {
             case "a":
             case "arrowleft":
                 currentSlide--;
-                if (currentSlide < 0) {
-                    currentSlide = slides.length - 1;
-                }
-                updateActiveSlide(currentSlide, true);
+                updateActiveSlide(--currentSlide, true);
                 break;
             case "d":
             case "arrowright":
-                currentSlide++;
-                if (currentSlide >= slides.length) {
-                    currentSlide = 0;
-                }
-                updateActiveSlide(currentSlide, true);
+                updateActiveSlide(++currentSlide, true);
                 break;
         }
     });
@@ -78,6 +78,12 @@ function onSetSlideIndexFromUrl() {
 
 function updateActiveSlide(index: number, userAction: boolean = false) {
     if (index === activeSlideIndex) return;
+    if (index < 0) {
+        index = slides.length - 1;
+    }
+    else if (index >= slides.length) {
+        index = 0;
+    }
     activeSlideIndex = index;
     if (userAction)
         context?.connection.send("slide-changed", index);
