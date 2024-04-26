@@ -10,18 +10,18 @@
 	  "gltf:transform": "npm run transform --prefix node_modules/@needle-tools/gltf-build-pipeline"
 	},
   "dependencies": {
-	  "@needle-tools/engine": "^3.23.1",
-	  "three": "npm:@needle-tools/three@^0.154.3",
+	  "@needle-tools/engine": "^3.37.6-alpha",
+	  "three": "npm:@needle-tools/three@^0.162.2",
 	  "vue": "^3.2.47"
 	},
   "devDependencies": {
 	  "@needle-tools/needle-component-compiler": "^1.9.3",
-	  "@types/three": "0.154.0",
+	  "@types/three": "0.162.0",
 	  "@vitejs/plugin-basic-ssl": "^1.0.1",
 	  "@vitejs/plugin-vue": "^4.0.0",
 	  "typescript": "^4.5.5",
 	  "vite": "^4.1.4",
 	  "vite-plugin-compression": "^0.5.1",
-	  "@needle-tools/helper": "^1.6.0"
+	  "@needle-tools/helper": "^1.8.0"
 	}
 }
