@@ -8,14 +8,18 @@ let context: Context | null = null;
 let animator: Animator | null = null;
 
 // onStart is a Needle Engine hook that is called once at the beginning of the first frame
-onStart(context => {
+onStart(ctx => {
+
+    // save the context to be accessible further down
+    context = ctx;
 
     // get the animator at the start of the application once
     // further down when the active slide changes we update this animator's slide property to update the animation state
     animator = findObjectOfType(Animator);
 
     // we want to network the slide changes so that all clients see the same slide
-    context.connection.beginListen("slide-changed", newSlide => {
+    ctx.connection.beginListen("slide-changed", newSlide => {
+        console.log("Slide changed to " + newSlide)
         // check if the new slide is a number and not the current slide
         if (typeof newSlide === "number" && newSlide !== activeSlideIndex) {
             updateActiveSlide(newSlide);
