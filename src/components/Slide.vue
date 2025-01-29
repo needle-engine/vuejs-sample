@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Context } from '@needle-tools/engine';
 import { onMounted, reactive, ref } from 'vue';
 
 const props = defineProps<{
