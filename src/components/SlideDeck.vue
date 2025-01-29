@@ -63,7 +63,6 @@ onMounted(() => {
         switch (key) {
             case "a":
             case "arrowleft":
-                currentSlide--;
                 updateActiveSlide(--currentSlide, true);
                 break;
             case "d":
