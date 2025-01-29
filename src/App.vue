@@ -43,10 +43,13 @@ needle-engine {
 }
 
 .title {
+    margin-top: -.5em;
     color: rgba(0, 0, 0, .2);
 }
 
 .subtitle {
+    margin-top: 3em;
+
     display: block;
     font-size: 4rem;
     text-align: center;
