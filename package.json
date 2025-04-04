@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "scripts": {
 	  "start": "vite --host",
-	  "pre-build": "tsc",
 	  "build:dev": "vite build",
 	  "build:production": "vite build -- --production",
 	  "serve": "vite preview",
 	  "gltf:transform": "npm run transform --prefix node_modules/@needle-tools/gltf-build-pipeline"
 	},
   "dependencies": {
-	  "@needle-tools/engine": "^3.37.6-alpha",
-	  "three": "npm:@needle-tools/three@^0.162.2",
+	  "@needle-tools/engine": "^4.4.0-beta.3",
+	  "three": "npm:@needle-tools/three@^0.169.0",
 	  "vue": "^3.2.47"
 	},
   "devDependencies": {
